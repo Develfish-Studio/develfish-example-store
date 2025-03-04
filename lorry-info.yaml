@@ -1,0 +1,7 @@
+name: Online Store
+repositories:
+- name: core
+  uri: git@github.com:Develfish-Studio/develfish-repo-core.git
+targets:
+- name: '@'
+  path: target

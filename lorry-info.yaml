@@ -1,7 +1,12 @@
 name: Online Store
-repositories:
-- name: core
-  uri: git@github.com:Develfish-Studio/develfish-repo-core.git
+actions:
+  generate/compose:
+    path: generate/compose.luau
+dependencies:
+  develfish-repo.core:
+    uri: git@github.com:Develfish-Studio/develfish-repo-core.git
+  develfish-repo.compose:
+    uri: git@github.com:Develfish-Studio/develfish-repo-compose.git
 targets:
-- name: '@'
-  path: target
+  '@':
+    path: .

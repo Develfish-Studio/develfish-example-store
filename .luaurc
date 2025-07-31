@@ -1,23 +1,8 @@
 {
-  "languageMode": "strict",
-  "lint": {
-    "*": true
-  },
-  "lintErrors": false,
-  "typeErrors": true,
-  "globals": [
-    "warn",
-    "table",
-    "json",
-    "yaml",
-    "engine",
-    "shell",
-    "array_mt",
-    "template"
-  ],
   "aliases": {
-    "root": ".",
-    "develfish-repo.core": "../../develfish-repo/core/lib",
-    "develfish-repo.compose": "../../develfish-repo/compose/lib"
+    "root": "./",
+    "develfish-repo.project-compose": "../../develfish-repo/project-compose/",
+    "develfish-repo.utils": "../../develfish-repo/utils/",
+    "develfish-repo.project": "../../develfish-repo/project/"
   }
 }

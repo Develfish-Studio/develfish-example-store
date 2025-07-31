@@ -1,15 +1,15 @@
-local lorry = require("@develfish-repo.core/lorry")
-local Project = require('@develfish-repo.core/Project')
-local Haproxy = require('@develfish-repo.compose/Haproxy')
-local Postgres = require('@develfish-repo.compose/Postgres')
-local Pgadmin = require('@develfish-repo.compose/Pgadmin')
-local Keycloak = require('@develfish-repo.compose/Keycloak')
-local Minio = require('@develfish-repo.compose/Minio')
-local Kcadm = require('@develfish-repo.compose/Kcadm')
-local Mcli = require('@develfish-repo.compose/Mcli')
-local App = require('@develfish-repo.compose/App')
-local Spa = require('@develfish-repo.compose/Spa')
-local Worker = require('@develfish-repo.compose/Worker')
+local Lorry = require("@develfish-repo.utils/lib/Lorry")
+local Project = require('@develfish-repo.utils/lib/Project')
+local Haproxy = require('@develfish-repo.project-compose/lib/Haproxy')
+local Postgres = require('@develfish-repo.project-compose/lib/Postgres')
+local Pgadmin = require('@develfish-repo.project-compose/lib/Pgadmin')
+local Keycloak = require('@develfish-repo.project-compose/lib/Keycloak')
+local Minio = require('@develfish-repo.project-compose/lib/Minio')
+local Kcadm = require('@develfish-repo.project-compose/lib/Kcadm')
+local Mcli = require('@develfish-repo.project-compose/lib/Mcli')
+local App = require('@develfish-repo.project-compose/lib/App')
+local Spa = require('@develfish-repo.project-compose/lib/Spa')
+-- local Worker = require('@develfish-repo.project-compose/lib/Worker')
 
 local project = Project:from('store_starter')
 
@@ -36,7 +36,7 @@ local minio_client = {
   secret_key = 'AZitoDkffcEYFYUmV4CGv1jr2fiXWIw4uSvdFlDu'
 }
 
-lorry.generate "@develfish-repo.compose/compose" {
+Lorry:generate "@develfish-repo.project-compose/compose" {
   target = '@',
   variables = {
     project = project:unwrap_project(),
@@ -59,7 +59,7 @@ lorry.generate "@develfish-repo.compose/compose" {
   }
 }
 
-lorry.generate "@develfish-repo.compose/haproxy" {
+Lorry:generate "@develfish-repo.project-compose/haproxy" {
   target = '@',
   variables = Haproxy
     :from(project)
@@ -131,21 +131,21 @@ lorry.generate "@develfish-repo.compose/haproxy" {
     :unwrap()
 }
 
-lorry.generate "@develfish-repo.compose/kafka" {
+Lorry:generate "@develfish-repo.project-compose/kafka" {
   target = '@',
   variables = {
     project = project:unwrap_project()
   }
 }
 
-lorry.generate "@develfish-repo.compose/kafka-ui" {
+Lorry:generate "@develfish-repo.project-compose/kafka-ui" {
   target = '@',
   variables = {
     project = project:unwrap_project()
   }
 }
 
-lorry.generate "@develfish-repo.compose/pgadmin" {
+Lorry:generate "@develfish-repo.project-compose/pgadmin" {
   target = '@',
   variables = Pgadmin
     :from(project)
@@ -156,7 +156,7 @@ lorry.generate "@develfish-repo.compose/pgadmin" {
     :unwrap()
 }
 
-lorry.generate "@develfish-repo.compose/postgres" {
+Lorry:generate "@develfish-repo.project-compose/postgres" {
   target = '@',
   variables = Postgres
     :from(project)
@@ -167,14 +167,14 @@ lorry.generate "@develfish-repo.compose/postgres" {
     :unwrap()
 }
 
-lorry.generate "@develfish-repo.compose/keycloak" {
+Lorry:generate "@develfish-repo.project-compose/keycloak" {
   target = '@',
   variables = Keycloak
     :from(project, datasource_keycloak)
     :unwrap()
 }
 
-lorry.generate "@develfish-repo.compose/kcadm" {
+Lorry:generate "@develfish-repo.project-compose/kcadm" {
   target = '@',
   variables = Kcadm
     :from(project)
@@ -206,7 +206,7 @@ lorry.generate "@develfish-repo.compose/kcadm" {
     :unwrap()
 }
 
-lorry.generate "@develfish-repo.compose/minio" {
+Lorry:generate "@develfish-repo.project-compose/minio" {
   target = '@',
   variables = Minio
     :from(project)
@@ -214,7 +214,7 @@ lorry.generate "@develfish-repo.compose/minio" {
     :unwrap()
 }
 
-lorry.generate "@develfish-repo.compose/mcli" {
+Lorry:generate "@develfish-repo.project-compose/mcli" {
   target = '@',
   variables = Mcli
     :from(project)
@@ -253,7 +253,7 @@ lorry.generate "@develfish-repo.compose/mcli" {
     :unwrap()
 }
 
-lorry.generate "@develfish-repo.compose/swagger-ui" {
+Lorry:generate "@develfish-repo.project-compose/swagger-ui" {
   target = '@',
   variables = {
     project = project:unwrap_project(),
@@ -272,7 +272,7 @@ lorry.generate "@develfish-repo.compose/swagger-ui" {
   }
 }
 
-lorry.generate "@develfish-repo.compose/app" {
+Lorry:generate "@develfish-repo.project-compose/app" {
   target = '@',
   variables = App
     :from(project, 'app-assembly-web', 'store/assembly_web:1.0-SNAPSHOT')
@@ -296,7 +296,7 @@ lorry.generate "@develfish-repo.compose/app" {
     :unwrap()
 }
 
-lorry.generate "@develfish-repo.compose/spa" {
+Lorry:generate "@develfish-repo.project-compose/spa" {
   target = '@',
   variables = Spa
     :from(project, 'app-admin-ui', 'store/admin_ui:1.0-SNAPSHOT')

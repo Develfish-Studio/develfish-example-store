@@ -1,5 +1,7 @@
 dependencies:
-  develfish-repo.core:
-    uri: file://../../develfish-repo/core
-  develfish-repo.compose:
-    uri: file://../../develfish-repo/compose
+  develfish-repo.utils:
+    path: ../../develfish-repo/utils
+  develfish-repo.project:
+    path: ../../develfish-repo/project
+  develfish-repo.project-compose:
+    path: ../../develfish-repo/project-compose

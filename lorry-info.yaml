@@ -1,12 +1,19 @@
 name: Online Store
+luau:
+  aliases:
+    root: .
 actions:
   generate/compose:
-    path: generate/compose.luau
+    path: actions/generate-compose.luau
+  generate/spring:
+    path: actions/generate-spring.luau
 dependencies:
-  develfish-repo.core:
-    uri: git@github.com:Develfish-Studio/develfish-repo-core.git
-  develfish-repo.compose:
-    uri: git@github.com:Develfish-Studio/develfish-repo-compose.git
+  develfish-repo.utils:
+    uri: git@github.com:Develfish-Studio/develfish-repo-utils.git
+  develfish-repo.project:
+    uri: git@github.com:Develfish-Studio/develfish-repo-project.git
+  develfish-repo.project-compose:
+    uri: git@github.com:Develfish-Studio/develfish-repo-project-compose.git
 targets:
   '@':
     path: .
